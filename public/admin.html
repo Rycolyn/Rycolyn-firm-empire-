@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Admin Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f8fafc; color:#0f172a; }
+    .topbar { background:#111827; color:white; padding:18px 24px; display:flex; justify-content:space-between; }
+    .nav a { color:white; text-decoration:none; margin-left:14px; }
+    .nav .goal-link { background:#1d4ed8; padding:8px 12px; border-radius:8px; }
+    .nav .social-link { background:#0f766e; padding:8px 12px; border-radius:8px; }
+    .wrap { max-width:1200px; margin:32px auto; padding:0 16px; }
+    .card { background:white; border-radius:14px; padding:24px; box-shadow:0 8px 24px rgba(15,23,42,.08); margin-bottom:22px; }
+    .danger { background:#dc2626; color:white; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; }
+    .primary { background:#1d4ed8; color:white; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; }
+    .staff-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:18px; }
+    form { display:grid; gap:12px; }
+    input, select { width:100%; padding:12px 14px; border:1px solid #cbd5e1; border-radius:10px; font-size:15px; }
+    table { width:100%; border-collapse:collapse; margin-top:12px; }
+    th, td { border:1px solid #e2e8f0; padding:10px 12px; text-align:left; }
+    th { background:#f1f5f9; }
+    .pill { display:inline-block; padding:4px 10px; border-radius:999px; font-size:12px; background:#dcfce7; color:#166534; }
+    .alert { color:#b91c1c; min-height:20px; font-weight:bold; }
+    .success { color:#166534; min-height:20px; font-weight:bold; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Rycolyn Admin Office</strong>
+    <div class="nav">
+      <a href="/dashboard">Dashboard</a>
+      <a class="goal-link" href="/goals">KPI Goals</a>
+      <a class="social-link" href="/social-media">Social Media</a>
+      <button class="danger" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>Admin Access</h1>
+      <p id="welcomeText">Loading admin profile...</p>
+      <p id="details"></p>
+    </div>
+
+    <div class="card">
+      <h2>Create Staff Account</h2>
+      <div class="staff-grid">
+        <form id="staffForm">
+          <input type="text" id="fullName" placeholder="Full name" required />
+          <input type="text" id="username" placeholder="Username" required />
+          <input type="email" id="email" placeholder="Email" required />
+          <input type="password" id="password" placeholder="Password" required />
+          <select id="department">
+            <option value="Operations">Operations</option>
+            <option value="Clinical">Clinical</option>
+            <option value="Caregiving">Caregiving</option>
+            <option value="Education">Education</option>
+            <option value="Finance">Finance</option>
+            <option value="Support Team">Support Team</option>
+          </select>
+          <button class="primary" type="submit">Create Staff Account</button>
+          <div id="formAlert" class="alert"></div>
+          <div id="formSuccess" class="success"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Staff Accounts and Access Records</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody id="staffTableBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('rycolynToken');
+    if (!token) window.location.href = '/login';
+
+    async function loadAdmin() {
+      const response = await fetch('/api/users/profile', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (!response.ok) {
+        localStorage.clear();
+        window.location.href = '/login';
+        return;
+      }
+
+      const profile = await response.json();
+      document.getElementById('welcomeText').textContent = `Welcome, ${profile.fullName || profile.username}!`;
+      document.getElementById('details').textContent = `Role: ${profile.role} • Department: ${profile.department || 'General'} • Email: ${profile.email}`;
+    }
+
+    async function loadAllUsers() {
+      const response = await fetch('/api/users/', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to load users');
+      }
+
+      const users = await response.json();
+      const tbody = document.getElementById('staffTableBody');
+      tbody.innerHTML = users.map(user => `
+        <tr>
+          <td>${user.fullName || user.username}</td>
+          <td>${user.username}</td>
+          <td>${user.email}</td>
+          <td>${user.department || 'General'}</td>
+          <td><span class="pill">${user.role}</span></td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('staffForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formAlert = document.getElementById('formAlert');
+      const formSuccess = document.getElementById('formSuccess');
+      formAlert.textContent = '';
+      formSuccess.textContent = '';
+
+      const staff = {
+        fullName: document.getElementById('fullName').value.trim(),
+        username: document.getElementById('username').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value.trim(),
+        department: document.getElementById('department').value
+      };
+
+      try {
+        const response = await fetch('/api/users/staff', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+          },
+          body: JSON.stringify(staff)
+        });
+
+        const data = await response.json();
+        if (!response.ok) throw new Error(data.error || 'Unable to create staff account');
+
+        formSuccess.textContent = 'Staff account created successfully.';
+        document.getElementById('staffForm').reset();
+        await loadAllUsers();
+      } catch (error) {
+        formAlert.textContent = error.message;
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = '/login';
+    });
+
+    loadAdmin();
+    loadAllUsers();
+  </script>
+</body>
+</html>

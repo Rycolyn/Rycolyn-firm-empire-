@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Portals</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+    }
+    .panel {
+      width: min(760px, 92vw);
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 22px;
+      padding: 36px 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    }
+    h1 {
+      text-align: center;
+      margin: 0 0 12px;
+      font-size: clamp(30px, 4vw, 52px);
+    }
+    .subtitle {
+      text-align: center;
+      margin-bottom: 28px;
+      color: #dbeafe;
+      font-size: 18px;
+    }
+    .portal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .portal {
+      background: white;
+      color: #0f172a;
+      border: none;
+      border-radius: 18px;
+      padding: 28px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.15);
+    }
+    .portal:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 32px rgba(15,23,42,0.2);
+    }
+    .user {
+      background: #eff6ff;
+      color: #1e3a8a;
+    }
+    .note {
+      text-align: center;
+      margin-top: 20px;
+      color: #dbeafe;
+      font-size: 14px;
+    }
+    .staff-link {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="panel">
+    <h1>Enterprise</h1>
+    <p class="subtitle">We serve, we grow, there is hope.</p>
+
+    <div class="portal-grid">
+      <button class="portal user" onclick="window.location.href='/user'">Client Portal</button>
+    </div>
+
+    <a class="staff-link" href="/login">Staff / Admin login</a>
+    <p class="note">Client access only appears here. Admin access is kept separate.</p>
+  </div>
+</body>
+</html>

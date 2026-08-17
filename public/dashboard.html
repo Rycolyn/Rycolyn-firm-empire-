@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Dashboard</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    .topbar { background: #0f172a; color: white; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .nav { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+    .nav a, .nav button { color: white; text-decoration: none; background: none; border: none; font-size: 14px; cursor: pointer; }
+    .dashboard-wrap { max-width: 1100px; margin: 28px auto; padding: 0 18px 40px; }
+    .welcome-card { background: linear-gradient(135deg, #0f172a, #1d4ed8); color: white; border-radius: 18px; padding: 28px; margin-bottom: 24px; }
+    .welcome-card p { color: #dbeafe; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 18px; margin: 20px 0 26px; }
+    .metric { background: white; border-radius: 14px; padding: 18px; border: 1px solid var(--border); }
+    .metric .label { color: #52616b; font-size: 0.84rem; }
+    .metric .value { font-size: 2rem; font-weight: 800; margin-top: 10px; }
+    .metric .trend { font-size: 0.8rem; color: #0f766e; margin-top: 8px; }
+    .table-wrap { background: white; border-radius: 16px; overflow: hidden; border: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); }
+    th { background: #edf4fb; }
+    .status-pill { display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; }
+    .status-on { background: #dcfce7; color: #166534; }
+    .status-behind { background: #fef3c7; color: #92400e; }
+    .status-risk { background: #fee2e2; color: #991b1b; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Rycolyn Digital Headquarters</strong>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/clinic">Clinic</a>
+      <a href="/caregiving">Caregiving</a>
+      <a href="/education">Education</a>
+      <a href="/inventory">Inventory</a>
+      <button id="logoutBtn" type="button">Logout</button>
+    </div>
+  </div>
+
+  <div class="dashboard-wrap">
+    <div class="welcome-card">
+      <h1 id="welcomeText">Welcome</h1>
+      <p id="details">Loading account details...</p>
+    </div>
+
+    <div class="stats-grid" id="dashboardStats"></div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Department</th>
+            <th>Logged In</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="trackingTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('rycolyn_token') || localStorage.getItem('rycolynToken');
+
+    if (!token) {
+      window.location.href = '/login';
+    }
+
+    function formatMetric(label, value, trend) {
+      return `
+        <div class="metric">
+          <div class="label">${label}</div>
+          <div class="value">${value}</div>
+          <div class="trend">${trend}</div>
+        </div>
+      `;
+    }
+
+    async function loadProfile() {
+      try {
+        const response = await fetch('/api/users/profile', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (!response.ok) {
+          throw new Error('Session expired');
+        }
+
+        const profile = await response.json();
+        document.getElementById('welcomeText').textContent = `Welcome, ${profile.fullName || profile.username}!`;
+        document.getElementById('details').textContent = `Role: ${profile.role} • Department: ${profile.department || 'General'} • Email: ${profile.email}`;
+      } catch (error) {
+        localStorage.removeItem('rycolyn_token');
+        localStorage.removeItem('rycolynToken');
+        window.location.href = '/login';
+      }
+    }
+
+    async function loadDashboardStats() {
+      try {
+        const response = await fetch('/api/dashboard/stats', {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        if (!response.ok) {
+          throw new Error('Unable to fetch dashboard data');
+        }
+
+        const data = await response.json();
+        const totalLoggedIn = Number(data.totalPatients || 0) + Number(data.totalCaregiversClients || 0) + Number(data.totalStudents || 0);
+        const onTrack = Math.max(totalLoggedIn - (data.lowStockItems?.length || 0), 0);
+        const behindTrack = data.lowStockItems?.length || 0;
+
+        document.getElementById('dashboardStats').innerHTML = [
+          formatMetric('Logged in', totalLoggedIn, 'Live activity'),
+          formatMetric('On track', onTrack, 'Target reached'),
+          formatMetric('Behind track', behindTrack, 'Needs attention'),
+          formatMetric('Inventory items', data.totalInventoryItems || 0, 'Operational overview')
+        ].join('');
+
+        document.getElementById('trackingTable').innerHTML = `
+          <tr>
+            <td>Clinic</td>
+            <td>${data.totalPatients || 0}</td>
+            <td><span class="status-pill ${Number(data.totalPatients || 0) > 0 ? 'status-on' : 'status-risk'}">${Number(data.totalPatients || 0) > 0 ? 'On track' : 'Needs action'}</span></td>
+          </tr>
+          <tr>
+            <td>Caregiving</td>
+            <td>${data.totalCaregiversClients || 0}</td>
+            <td><span class="status-pill ${Number(data.totalCaregiversClients || 0) > 0 ? 'status-on' : 'status-risk'}">${Number(data.totalCaregiversClients || 0) > 0 ? 'On track' : 'Needs action'}</span></td>
+          </tr>
+          <tr>
+            <td>Education</td>
+            <td>${data.totalStudents || 0}</td>
+            <td><span class="status-pill ${Number(data.totalStudents || 0) > 0 ? 'status-on' : 'status-risk'}">${Number(data.totalStudents || 0) > 0 ? 'On track' : 'Needs action'}</span></td>
+          </tr>
+          <tr>
+            <td>Inventory</td>
+            <td>${data.totalInventoryItems || 0}</td>
+            <td><span class="status-pill ${Number(data.totalInventoryItems || 0) > 10 ? 'status-on' : 'status-behind'}">${Number(data.totalInventoryItems || 0) > 10 ? 'On track' : 'Behind track'}</span></td>
+          </tr>
+        `;
+      } catch (error) {
+        console.error(error);
+      }
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.removeItem('rycolyn_token');
+      localStorage.removeItem('rycolynToken');
+      window.location.href = '/login';
+    });
+
+    loadProfile();
+    loadDashboardStats();
+  </script>
+</body>
+</html>

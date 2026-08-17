@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Social Media Center</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-weight: bold; font-size: 22px; }
+    .nav a, .nav button {
+      color: white;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 12px;
+      font-size: 14px;
+    }
+    .wrap { max-width: 1200px; margin: 32px auto; padding: 0 18px; }
+    .card {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 28px rgba(15,23,42,0.05);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .stat {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+    .stat strong { display: block; font-size: 24px; color: #0f172a; }
+    .stat .label { font-size: 12px; color: #64748b; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    .platform {
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px;
+      background: linear-gradient(180deg, #f8fafc, #f1f5f9);
+    }
+    .platform .icon { font-size: 28px; margin-bottom: 10px; }
+    .platform h3 { margin: 0 0 8px; }
+    .platform p { margin: 6px 0; color: #475569; font-size: 14px; }
+    .platform .followers { font-weight: bold; color: #1d4ed8; margin-top: 10px; }
+    .post-form {
+      margin-top: 18px;
+      padding: 18px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+    }
+    textarea, input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      width: 100%;
+      padding: 12px 16px;
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .platforms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .platform-checkbox {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    input[type="checkbox"] {
+      width: auto;
+      margin: 0;
+    }
+    .posts-list {
+      margin-top: 18px;
+    }
+    .post-item {
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #f8fafc;
+    }
+    .post-item h3 { margin: 0 0 8px; }
+    .post-item .meta { font-size: 13px; color: #475569; }
+    .post-item .platform-tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .success { color: #166534; font-weight: bold; margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Rycolyn Social Media Center</div>
+    <div class="nav">
+      <a href="/admin">Admin Office</a>
+      <a href="/library">Library</a>
+      <button onclick="localStorage.clear(); window.location.href='/login';">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>Social Media Overview</h2>
+      <p>Centralized management for all advertising, posting, and promotional content across communication platforms worldwide.</p>
+      <div class="stats-grid">
+        <div class="stat">
+          <strong>127K</strong>
+          <div class="label">Total Followers</div>
+        </div>
+        <div class="stat">
+          <strong>89</strong>
+          <div class="label">Posts This Month</div>
+        </div>
+        <div class="stat">
+          <strong>24.3K</strong>
+          <div class="label">Engagement Rate</div>
+        </div>
+        <div class="stat">
+          <strong>6</strong>
+          <div class="label">Active Channels</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Connected Platforms</h2>
+      <div class="grid">
+        <div class="platform">
+          <div class="icon">f</div>
+          <h3>Facebook</h3>
+          <p>Community engagement and promotions</p>
+          <div class="followers">25,300 followers</div>
+        </div>
+        <div class="platform">
+          <div class="icon">📷</div>
+          <h3>Instagram</h3>
+          <p>Visual content and brand storytelling</p>
+          <div class="followers">18,900 followers</div>
+        </div>
+        <div class="platform">
+          <div class="icon">in</div>
+          <h3>LinkedIn</h3>
+          <p>Professional network and careers</p>
+          <div class="followers">9,200 followers</div>
+        </div>
+        <div class="platform">
+          <div class="icon">𝕏</div>
+          <h3>Twitter/X</h3>
+          <p>Real-time updates and announcements</p>
+          <div class="followers">12,500 followers</div>
+        </div>
+        <div class="platform">
+          <div class="icon">▶️</div>
+          <h3>YouTube</h3>
+          <p>Video courses and educational content</p>
+          <div class="followers">5,600 subscribers</div>
+        </div>
+        <div class="platform">
+          <div class="icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>Direct customer communication</p>
+          <div class="followers">8,100+ members</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Create Campaign & Schedule Post</h2>
+      <div class="post-form">
+        <input id="campaignTitle" type="text" placeholder="Campaign title (e.g., School Enrollment Drive)" />
+        <textarea id="postContent" placeholder="Write your post content here..." rows="5"></textarea>
+        
+        <label><strong>Select Platforms to Post</strong></label>
+        <div class="platforms-grid">
+          <label class="platform-checkbox">
+            <input type="checkbox" value="Facebook" /> Facebook
+          </label>
+          <label class="platform-checkbox">
+            <input type="checkbox" value="Instagram" /> Instagram
+          </label>
+          <label class="platform-checkbox">
+            <input type="checkbox" value="LinkedIn" /> LinkedIn
+          </label>
+          <label class="platform-checkbox">
+            <input type="checkbox" value="Twitter/X" /> Twitter/X
+          </label>
+          <label class="platform-checkbox">
+            <input type="checkbox" value="YouTube" /> YouTube
+          </label>
+          <label class="platform-checkbox">
+            <input type="checkbox" value="WhatsApp" /> WhatsApp
+          </label>
+        </div>
+
+        <input id="postDate" type="datetime-local" placeholder="Schedule (leave empty for immediate)" style="margin-top: 12px;" />
+        <button id="postBtn">Publish Campaign</button>
+        <div id="successMsg" class="success"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Campaign History</h2>
+      <div class="posts-list" id="postsList">
+        <p style="color: #475569;">No campaigns posted yet. Create your first social media campaign above.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const posts = [];
+
+    document.getElementById('postBtn').addEventListener('click', () => {
+      const title = document.getElementById('campaignTitle').value.trim();
+      const content = document.getElementById('postContent').value.trim();
+      const dateVal = document.getElementById('postDate').value;
+      const successMsg = document.getElementById('successMsg');
+      
+      const selectedPlatforms = Array.from(document.querySelectorAll('.platform-checkbox input:checked'))
+        .map(cb => cb.value);
+
+      if (!title || !content || !selectedPlatforms.length) {
+        successMsg.textContent = 'Please fill in title, content, and select at least one platform.';
+        successMsg.style.color = '#b91c1c';
+        return;
+      }
+
+      const post = {
+        title,
+        content,
+        platforms: selectedPlatforms,
+        date: dateVal ? new Date(dateVal).toLocaleString() : new Date().toLocaleString()
+      };
+
+      posts.unshift(post);
+      document.getElementById('campaignTitle').value = '';
+      document.getElementById('postContent').value = '';
+      document.getElementById('postDate').value = '';
+      document.querySelectorAll('.platform-checkbox input').forEach(cb => cb.checked = false);
+      
+      successMsg.textContent = `Campaign posted successfully to ${selectedPlatforms.length} platform(s).`;
+      successMsg.style.color = '#166534';
+      
+      renderPosts();
+    });
+
+    function renderPosts() {
+      const postsList = document.getElementById('postsList');
+      if (!posts.length) {
+        postsList.innerHTML = '<p style="color: #475569;">No campaigns posted yet. Create your first social media campaign above.</p>';
+        return;
+      }
+
+      postsList.innerHTML = posts.map(post => `
+        <div class="post-item">
+          <h3>${post.title}</h3>
+          <p>${post.content}</p>
+          <div style="margin-top: 10px;">
+            ${post.platforms.map(p => `<span class="platform-tag">${p}</span>`).join('')}
+          </div>
+          <div class="meta">Posted: ${post.date}</div>
+        </div>
+      `).join('');
+    }
+
+    renderPosts();
+  </script>
+</body>
+</html>

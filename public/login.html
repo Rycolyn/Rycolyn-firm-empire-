@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Sign In</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0f172a;
+    }
+    .login-box {
+      background: #fff;
+      width: min(420px, 90vw);
+      padding: 32px 28px;
+      border-radius: 16px;
+      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.35);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      text-align: center;
+    }
+    .subtitle {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #475569;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 16px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      background: #1d4ed8;
+      color: white;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #1e40af; }
+    .error {
+      color: #b91c1c;
+      min-height: 20px;
+      margin: 10px 0;
+      font-weight: bold;
+    }
+    .demo {
+      margin-top: 18px;
+      padding: 12px;
+      background: #eff6ff;
+      border-radius: 10px;
+      color: #1e3a8a;
+      font-size: 14px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <h1>Enterprise</h1>
+    <p class="subtitle">We serve, we grow, there is hope.</p>
+
+    <form id="loginForm">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" placeholder="admin or user" required />
+
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" placeholder="Enter password" required />
+
+      <button type="submit">Sign In</button>
+      <div id="error" class="error"></div>
+    </form>
+
+    <div class="demo">
+      Demo accounts:<br>
+      Admin: admin / admin123<br>
+      User: user / user123
+    </div>
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const errorBox = document.getElementById('error');
+
+    loginForm.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      errorBox.textContent = '';
+
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Login failed');
+        }
+
+        localStorage.setItem('rycolynToken', data.token);
+        localStorage.setItem('rycolynUser', JSON.stringify(data.user));
+
+        if (data.user.role === 'admin') {
+          window.location.href = '/admin';
+        } else {
+          window.location.href = '/user';
+        }
+      } catch (error) {
+        errorBox.textContent = error.message;
+      }
+    });
+  </script>
+</body>
+</html>

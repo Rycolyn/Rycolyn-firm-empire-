@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Company Dashboard</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fb;
+      color: #0f172a;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 22px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-weight: bold; font-size: 24px; }
+    .nav { display: flex; gap: 16px; align-items: center; }
+    .nav a, .nav button {
+      color: white;
+      text-decoration: none;
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 36px auto;
+      padding: 0 18px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #0b1f3a, #123d6b);
+      color: white;
+      border-radius: 18px;
+      padding: 36px 28px;
+      margin-bottom: 24px;
+    }
+    .hero h1 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 46px); }
+    .hero p { margin: 0; color: #dbeafe; line-height: 1.7; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08);
+      padding: 22px;
+      border: 1px solid #e2e8f0;
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      color: #0f172a;
+      font-size: 20px;
+    }
+    .card p {
+      margin: 0;
+      color: #475569;
+      line-height: 1.7;
+    }
+    .pill {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 26px;
+      margin: 40px 0 18px;
+    }
+    ul {
+      margin: 12px 0 0 18px;
+      color: #334155;
+      line-height: 1.9;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">RYCOLYN COMPANY</div>
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/admin">Admin</a>
+      <a href="/user">Client</a>
+      <a href="/staff-login">Staff Login</a>
+      <button onclick="localStorage.clear(); window.location.href='/login';">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero">
+      <h1>Complete Business Operating System</h1>
+      <p>Rycolyn is structured as a multi-division enterprise with a school establishment arm and a full online cybersecurity services arm, built to operate and scale as a complete, professional system.</p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="pill">Education</div>
+        <h3>School Establishment</h3>
+        <p>Academic infrastructure, learning materials, classroom resources, school operations, and staff management.</p>
+      </div>
+
+      <div class="card">
+        <div class="pill">Cyber</div>
+        <h3>Online Cyber Services</h3>
+        <p>Cybersecurity operations, cloud protection, systems support, client services, and professional digital security infrastructure.</p>
+      </div>
+
+      <div class="card">
+        <div class="pill">Operations</div>
+        <h3>Administration</h3>
+        <p>Role-based access for admin office, staff, and clients with centralized records and structured reporting.</p>
+      </div>
+
+      <div class="card">
+        <div class="pill">Finance</div>
+        <h3>Payments & Revenue</h3>
+        <p>International payment channels, receiving options, invoicing, and financial management.</p>
+      </div>
+    </div>
+
+    <h2 class="section-title">School Establishment Requirements</h2>
+    <div class="card">
+      <ul>
+        <li>Academic curriculum and learning materials</li>
+        <li>Textbooks, visual aids, lesson plans, and teaching resources</li>
+        <li>Classrooms, desks, whiteboards, computers, and projectors</li>
+        <li>School administration and admissions system</li>
+        <li>Attendance, assessments, fees, and student records</li>
+        <li>Teachers, academic staff, financial officers, and support personnel</li>
+        <li>Internet, ICT equipment, and school operations infrastructure</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Cyber Services Requirements</h2>
+    <div class="card">
+      <ul>
+        <li>Cybersecurity tools and protection systems</li>
+        <li>Servers, firewalls, endpoint protection, and monitoring systems</li>
+        <li>Backup systems, disaster recovery, and secure cloud environments</li>
+        <li>Cyber audits, security assessments, and service packages</li>
+        <li>Ethical hacking, network monitoring, and incident response</li>
+        <li>Cyber staff, engineers, analysts, and support personnel</li>
+        <li>Client management, invoicing, ticketing, and service tracking</li>
+      </ul>
+    </div>
+
+    <h2 class="section-title">Complete Business Model</h2>
+    <div class="card">
+      <ul>
+        <li>Strategic admin office</li>
+        <li>Internal staff access and management</li>
+        <li>Client portal and service access</li>
+        <li>School operations and educational structures</li>
+        <li>Cyber service center and digital security capabilities</li>
+        <li>Worldwide payment and revenue channels</li>
+        <li>Professional multi-division reporting and growth system</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>

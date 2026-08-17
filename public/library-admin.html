@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn Library Admin</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    .topbar {
+      background: linear-gradient(135deg, #0f172a, #1d4ed8);
+      color: white;
+      padding: 20px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .brand { font-weight: bold; font-size: 22px; }
+    .nav a, .nav button {
+      color: white;
+      text-decoration: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin-left: 12px;
+      font-size: 14px;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 32px auto;
+      padding: 0 18px;
+    }
+    .card {
+      background: white;
+      border-radius: 18px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 10px 28px rgba(15,23,42,0.05);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+    }
+    form {
+      display: grid;
+      gap: 12px;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      background: #1d4ed8;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      text-align: left;
+      border: 1px solid #e2e8f0;
+      padding: 10px 12px;
+    }
+    th { background: #f1f5f9; }
+    .success { color: #166534; font-weight: bold; min-height: 20px; }
+    .error { color: #b91c1c; font-weight: bold; min-height: 20px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="brand">Rycolyn Library Admin</div>
+    <div class="nav">
+      <a href="/library">Library</a>
+      <a href="/admin">Admin Office</a>
+      <button onclick="localStorage.clear(); window.location.href='/login';">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h2>Add New Book to Archive</h2>
+      <div class="grid">
+        <form id="bookForm">
+          <input id="title" type="text" placeholder="Book title" required />
+          <input id="author" type="text" placeholder="Author" required />
+          <input id="category" type="text" placeholder="Category" required />
+          <select id="format">
+            <option value="PDF">PDF</option>
+            <option value="E-book">E-book</option>
+            <option value="Course Pack">Course Pack</option>
+            <option value="Guide">Guide</option>
+          </select>
+          <input id="tag" type="text" placeholder="Tag" required />
+          <input id="price" type="number" step="0.01" min="0" placeholder="Price" required />
+          <button type="submit">Save Book</button>
+          <div id="resultSuccess" class="success"></div>
+          <div id="resultError" class="error"></div>
+        </form>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Library Inventory</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Category</th>
+            <th>Format</th>
+            <th>Tag</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody id="bookTable"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    const books = [
+      { title: 'Advanced Mathematics for Global Learners', author: 'Dr. A. Ibrahim', category: 'STEM', format: 'PDF', tag: 'Academic', price: 24.99 },
+      { title: 'Cybersecurity Essentials for Beginners', author: 'M. Johnson', category: 'Cybersecurity', format: 'E-book', tag: 'Tech', price: 29.99 },
+      { title: 'Business Leadership and Strategy', author: 'S. Morgan', category: 'Business', format: 'PDF', tag: 'Leadership', price: 19.99 },
+      { title: 'Research Methods and Writing Skills', author: 'E. Bright', category: 'Education', format: 'PDF', tag: 'Study', price: 17.90 }
+    ];
+
+    const tableBody = document.getElementById('bookTable');
+    const resultSuccess = document.getElementById('resultSuccess');
+    const resultError = document.getElementById('resultError');
+
+    function renderBooks() {
+      tableBody.innerHTML = books.map(book => `
+        <tr>
+          <td>${book.title}</td>
+          <td>${book.author}</td>
+          <td>${book.category}</td>
+          <td>${book.format}</td>
+          <td>${book.tag}</td>
+          <td>$${Number(book.price).toFixed(2)}</td>
+        </tr>
+      `).join('');
+    }
+
+    document.getElementById('bookForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      resultSuccess.textContent = '';
+      resultError.textContent = '';
+
+      const newBook = {
+        title: document.getElementById('title').value.trim(),
+        author: document.getElementById('author').value.trim(),
+        category: document.getElementById('category').value.trim(),
+        format: document.getElementById('format').value,
+        tag: document.getElementById('tag').value.trim(),
+        price: Number(document.getElementById('price').value)
+      };
+
+      if (!newBook.title || !newBook.author || !newBook.category || !newBook.tag || !newBook.price) {
+        resultError.textContent = 'Please complete all book details.';
+        return;
+      }
+
+      books.unshift(newBook);
+      renderBooks();
+      event.target.reset();
+      resultSuccess.textContent = 'Book added to archive successfully.';
+    });
+
+    renderBooks();
+  </script>
+</body>
+</html>

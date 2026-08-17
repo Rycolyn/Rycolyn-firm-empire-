@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rycolyn User Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; background:#f8fafc; color:#0f172a; }
+    .topbar { background:#0f172a; color:white; padding:18px 24px; display:flex; justify-content:space-between; }
+    .nav a { color:white; text-decoration:none; margin-left:14px; }
+    .nav a.primary { background:#2563eb; padding:8px 12px; border-radius:8px; }
+    .wrap { max-width:1100px; margin:32px auto; padding:0 16px; }
+    .card { background:white; border-radius:14px; padding:24px; box-shadow:0 8px 24px rgba(15,23,42,.08); margin-bottom:22px; }
+    .btn { background:#2563eb; color:white; border:none; border-radius:8px; padding:10px 16px; cursor:pointer; }
+    .payment-grid {
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap:18px;
+      margin-top:18px;
+    }
+    .payment-method {
+      border:1px solid #e2e8f0;
+      border-radius:14px;
+      padding:18px;
+      background:linear-gradient(180deg,#ffffff,#f8fafc);
+    }
+    .payment-method h3 { margin:0 0 8px; }
+    .payment-method .tag { display:inline-block; font-size:12px; background:#e0f2fe; color:#075985; padding:5px 8px; border-radius:999px; margin-bottom:10px; }
+    .payment-method p { margin:6px 0; color:#475569; }
+    .strong { font-weight:bold; color:#0f172a; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Rycolyn User Portal</strong>
+    <div class="nav">
+      <a href="/dashboard">Dashboard</a>
+      <a class="primary" href="/library">Online Library</a>
+      <button class="btn" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="card">
+      <h1>User Access</h1>
+      <p id="welcomeText">Loading user profile...</p>
+      <p id="details"></p>
+    </div>
+
+    <div class="card">
+      <h2>Receive Payments</h2>
+      <p>Choose a payment option below for international transfers and digital payments.</p>
+
+      <div class="payment-grid">
+        <div class="payment-method">
+          <div class="tag">Bank Transfer</div>
+          <h3>SWIFT / Wire</h3>
+          <p><span class="strong">Bank:</span> Rycolyn International Bank</p>
+          <p><span class="strong">SWIFT:</span> RYCNUS33</p>
+          <p><span class="strong">IBAN:</span> US12 4567 8901 2345 6789 01</p>
+        </div>
+
+        <div class="payment-method">
+          <div class="tag">Cards</div>
+          <h3>Visa / Mastercard</h3>
+          <p><span class="strong">Card:</span> Global Payment Card</p>
+          <p><span class="strong">Network:</span> Visa, Mastercard, UnionPay</p>
+          <p><span class="strong">Processing:</span> Secure online settlement</p>
+        </div>
+
+        <div class="payment-method">
+          <div class="tag">Digital Wallet</div>
+          <h3>PayPal</h3>
+          <p><span class="strong">Email:</span> payments@rycolyn.com</p>
+          <p><span class="strong">Type:</span> Personal and business wallet</p>
+          <p><span class="strong">Availability:</span> Worldwide</p>
+        </div>
+
+        <div class="payment-method">
+          <div class="tag">Mobile Money</div>
+          <h3>MTN / Airtel / Orange</h3>
+          <p><span class="strong">Region:</span> Africa & emerging markets</p>
+          <p><span class="strong">Use:</span> Local mobile wallet transfers</p>
+          <p><span class="strong">Fast:</span> Instant settlement</p>
+        </div>
+
+        <div class="payment-method">
+          <div class="tag">Crypto</div>
+          <h3>Bitcoin / USDT</h3>
+          <p><span class="strong">Wallet:</span> BTC / USDT payment address</p>
+          <p><span class="strong">Network:</span> TRC20, ERC20, BTC</p>
+          <p><span class="strong">Use:</span> International digital remittance</p>
+        </div>
+
+        <div class="payment-method">
+          <div class="tag">Regional</div>
+          <h3>Western Union / MoneyGram</h3>
+          <p><span class="strong">Available:</span> Global cash pickup</p>
+          <p><span class="strong">Use:</span> Offline collection</p>
+          <p><span class="strong">Receiver:</span> Rycolyn Global Accounts</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const token = localStorage.getItem('rycolynToken');
+    if (!token) window.location.href = '/login';
+
+    async function loadUser() {
+      const response = await fetch('/api/users/profile', {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+
+      if (!response.ok) {
+        localStorage.clear();
+        window.location.href = '/login';
+        return;
+      }
+
+      const profile = await response.json();
+      document.getElementById('welcomeText').textContent = `Welcome, ${profile.fullName || profile.username}!`;
+      document.getElementById('details').textContent = `Role: ${profile.role} • Department: ${profile.department || 'General'} • Email: ${profile.email}`;
+    }
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      localStorage.clear();
+      window.location.href = '/login';
+    });
+
+    loadUser();
+  </script>
+</body>
+</html>

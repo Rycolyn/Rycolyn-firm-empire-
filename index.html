@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +14,10 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
@@ -56,6 +59,10 @@
       text-decoration: none;
       margin: 0 12px;
       font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #1f5f8b;
     }
 
     main {
@@ -110,6 +117,11 @@
       border-radius: 8px;
       text-decoration: none;
       font-weight: bold;
+      transition: background 0.2s;
+    }
+
+    .button:hover {
+      background: #102a43;
     }
 
     .vision {
@@ -148,7 +160,7 @@
 
 <body>
 
-  <header>
+  <header id="home">
     <h1>RYCOLYN COMPANY</h1>
     <p>We serve, we grow, there is hope.</p>
   </header>
@@ -160,7 +172,7 @@
     <a href="#vision">Our Vision</a>
   </nav>
 
-  <main id="home">
+  <main>
 
     <section class="welcome">
       <h2>Welcome to the Rycolyn Digital Headquarters</h2>
@@ -177,56 +189,73 @@
 
         <div class="card">
           <h3>🏢 Rycolyn Company</h3>
+
           <p>
             The mother company and central management headquarters
             for the Rycolyn enterprise.
           </p>
-          <a class="button" href="#operations">Clinic</a>>Headquarters</a>
+
+          <a class="button" href="#operations">Headquarters</a>
         </div>
 
         <div class="card">
           <h3>🏥 Rycolyn Clinic</h3>
+
           <p>
             Healthcare services, patient administration and
             clinical operations.
           </p>
+
           <a class="button" href="#operations">Clinic</a>
         </div>
 
         <div class="card">
           <h3>❤️ Rycolyn Caregiving</h3>
+
           <p>
             Professional caregiving services, client management
             and service records.
           </p>
-          <a class="button" href="#">Caregiving</a>
+
+          <a class="button" href="#operations">Caregiving</a>
         </div>
 
         <div class="card">
           <h3>🌍 Theresa Hope Global</h3>
+
           <p>
             A global platform providing spiritual, emotional,
             psychological guidance and coaching services.
           </p>
-          <a class="button" href="#">Visit Platform</a>
+
+          <a class="button"
+             href="https://theresahopeglobal.com/"
+             target="_blank"
+             rel="noopener noreferrer">
+             Visit Platform
+          </a>
         </div>
 
         <div class="card">
           <h3>🎓 Smart Student Training</h3>
+
           <p>
             Educational support, student training, assessment
             and academic performance management.
           </p>
-          <a class="button" href="#">Education</a>
+
+          <a class="button" href="#operations">Education</a>
         </div>
 
         <div class="card">
           <h3>📦 Retail & Stock</h3>
+
           <p>
             Paperless stock management tracking stock-in,
             stock-out, prices, profits and accountability.
           </p>
-          <a class="button" href="#">Inventory</a>
+
+          <a class="button" href="#operations">Inventory</a>
         </div>
 
       </div>
@@ -243,6 +272,10 @@
         projects, reporting and digital employees.
       </p>
 
+      <br>
+
+      <a class="button" href="#companies">Back to Companies</a>
+
     </section>
 
     <section id="vision" class="vision">
@@ -258,6 +291,10 @@
       <br>
 
       <h3>We serve. We grow. There is hope.</h3>
+
+      <br>
+
+      <a class="button" href="#home">Back to Home</a>
 
     </section>
 

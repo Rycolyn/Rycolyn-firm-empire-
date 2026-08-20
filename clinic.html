@@ -1,1 +1,1603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Rycolyn Clinic | Digital Clinic Portal</title>
+
+  <meta name="description"
+        content="Rycolyn Clinic digital healthcare portal.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b3954, #087e8b);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    header h1 {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 17px;
+    }
+
+    nav {
+      background: white;
+      padding: 14px 10px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #0b3954;
+      text-decoration: none;
+      font-weight: bold;
+      margin: 5px 10px;
+      display: inline-block;
+    }
+
+    nav a:hover {
+      color: #087e8b;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .welcome,
+    .section {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+      margin-bottom: 30px;
+    }
+
+    .welcome {
+      text-align: center;
+    }
+
+    h2 {
+      color: #0b3954;
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      color: #087e8b;
+      margin-bottom: 10px;
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .dashboard-card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+      text-align: center;
+    }
+
+    .dashboard-card .icon {
+      font-size: 30px;
+    }
+
+    .dashboard-card strong {
+      display: block;
+      font-size: 27px;
+      color: #087e8b;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 15px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px;
+      border: 1px solid #ccd6e0;
+      border-radius: 8px;
+      font-size: 15px;
+      background: white;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .button {
+      display: inline-block;
+      background: #087e8b;
+      color: white;
+      border: none;
+      padding: 11px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+
+    .button:hover {
+      background: #0b3954;
+    }
+
+    .danger {
+      background: #a83232;
+    }
+
+    .success {
+      background: #287d3c;
+    }
+
+    .secondary {
+      background: #0b3954;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 25px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+
+    th,
+    td {
+      padding: 11px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+
+    th {
+      background: #0b3954;
+      color: white;
+    }
+
+    .status {
+      padding: 5px 9px;
+      border-radius: 15px;
+      font-size: 13px;
+      font-weight: bold;
+      background: #fff3cd;
+      color: #856404;
+    }
+
+    .notice {
+      background: #eef8fa;
+      border-left: 5px solid #087e8b;
+      padding: 15px;
+      margin-top: 20px;
+      border-radius: 6px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 20px;
+      color: #68737d;
+    }
+
+    footer {
+      background: #0b3954;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 29px;
+      }
+
+      nav a {
+        font-size: 14px;
+        margin: 4px 5px;
+      }
+
+      main {
+        padding: 20px 12px;
+      }
+
+      .section,
+      .welcome {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header id="home">
+  <h1>🏥 RYCOLYN CLINIC</h1>
+  <p>Quality Healthcare • Compassionate Service • Better Records</p>
+</header>
+
+<nav>
+  <a href="#home">Home</a>
+  <a href="#patients">Patients</a>
+  <a href="#appointments">Appointments</a>
+  <a href="#clinical">Clinical</a>
+  <a href="#laboratory">Laboratory</a>
+  <a href="#billing">Billing</a>
+  <a href="#admin">Administration</a>
+  <a href="index.html">Headquarters</a>
+</nav>
+
+<main>
+
+<section class="welcome">
+
+  <h2>Rycolyn Clinic Digital Portal</h2>
+
+  <p>
+    A central digital system for patient registration,
+    appointments, clinical records, laboratory requests
+    and billing.
+  </p>
+
+  <div class="notice">
+    <strong>Development notice:</strong>
+    This version is a browser-based prototype.
+    Do not enter real patient information until secure
+    authentication and database protection are connected.
+  </div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section class="dashboard">
+
+  <div class="dashboard-card">
+    <div class="icon">👥</div>
+    <strong id="patientCount">0</strong>
+    Patients
+  </div>
+
+  <div class="dashboard-card">
+    <div class="icon">📅</div>
+    <strong id="appointmentCount">0</strong>
+    Appointments
+  </div>
+
+  <div class="dashboard-card">
+    <div class="icon">🧪</div>
+    <strong id="labCount">0</strong>
+    Lab Requests
+  </div>
+
+  <div class="dashboard-card">
+    <div class="icon">💰</div>
+    <strong id="billingCount">0</strong>
+    Payments
+  </div>
+
+</section>
+
+
+<!-- PATIENTS -->
+
+<section id="patients" class="section">
+
+  <h2>👤 Patient Registration</h2>
+
+  <form id="patientForm">
+
+    <div class="form-grid">
+
+      <div>
+        <label>First Name</label>
+        <input type="text" id="firstName" required>
+      </div>
+
+      <div>
+        <label>Middle Name</label>
+        <input type="text" id="middleName">
+      </div>
+
+      <div>
+        <label>Last Name</label>
+        <input type="text" id="lastName" required>
+      </div>
+
+      <div>
+        <label>Date of Birth</label>
+        <input type="date" id="dob" required>
+      </div>
+
+      <div>
+        <label>Sex</label>
+        <select id="sex" required>
+          <option value="">Select</option>
+          <option>Female</option>
+          <option>Male</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Phone</label>
+        <input type="tel" id="phone">
+      </div>
+
+      <div>
+        <label>National ID / Passport</label>
+        <input type="text" id="idNumber">
+      </div>
+
+      <div>
+        <label>Next of Kin</label>
+        <input type="text" id="nextOfKin">
+      </div>
+
+      <div>
+        <label>Next of Kin Phone</label>
+        <input type="tel" id="nextOfKinPhone">
+      </div>
+
+      <div class="full">
+        <label>Address</label>
+        <textarea id="address"></textarea>
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">
+      Register Patient
+    </button>
+
+  </form>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Patient ID</th>
+          <th>Name</th>
+          <th>DOB</th>
+          <th>Sex</th>
+          <th>Phone</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="patientTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- APPOINTMENTS -->
+
+<section id="appointments" class="section">
+
+  <h2>📅 Appointments</h2>
+
+  <form id="appointmentForm">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Patient</label>
+        <select id="appointmentPatient" required>
+          <option value="">Select patient</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input type="date" id="appointmentDate" required>
+      </div>
+
+      <div>
+        <label>Time</label>
+        <input type="time" id="appointmentTime" required>
+      </div>
+
+      <div>
+        <label>Service</label>
+        <select id="appointmentService" required>
+          <option value="">Select service</option>
+          <option>General Consultation</option>
+          <option>Maternal & Child Health</option>
+          <option>Family Planning</option>
+          <option>Immunization</option>
+          <option>Laboratory</option>
+          <option>Follow-up</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">
+      Book Appointment
+    </button>
+
+  </form>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Service</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="appointmentTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- CLINICAL -->
+
+<section id="clinical" class="section">
+
+  <h2>🩺 Clinical Records</h2>
+
+  <form id="clinicalForm">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Patient</label>
+        <select id="clinicalPatient" required>
+          <option value="">Select patient</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Visit Date</label>
+        <input type="date" id="visitDate" required>
+      </div>
+
+      <div>
+        <label>Clinician</label>
+        <input type="text" id="clinician" required>
+      </div>
+
+      <div>
+        <label>Temperature °C</label>
+        <input type="number" id="temperature" step="0.1">
+      </div>
+
+      <div>
+        <label>Blood Pressure</label>
+        <input type="text" id="bloodPressure" placeholder="120/80">
+      </div>
+
+      <div>
+        <label>Pulse Rate</label>
+        <input type="number" id="pulse">
+      </div>
+
+      <div class="full">
+        <label>Presenting Complaint</label>
+        <textarea id="complaint"></textarea>
+      </div>
+
+      <div class="full">
+        <label>Assessment / Diagnosis</label>
+        <textarea id="diagnosis"></textarea>
+      </div>
+
+      <div class="full">
+        <label>Treatment / Plan</label>
+        <textarea id="treatment"></textarea>
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">
+      Save Clinical Record
+    </button>
+
+  </form>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Clinician</th>
+          <th>Complaint</th>
+          <th>Diagnosis</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="clinicalTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- LABORATORY -->
+
+<section id="laboratory" class="section">
+
+  <h2>🧪 Laboratory Requests</h2>
+
+  <form id="labForm">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Patient</label>
+        <select id="labPatient" required>
+          <option value="">Select patient</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input type="date" id="labDate" required>
+      </div>
+
+      <div>
+        <label>Test</label>
+        <select id="labTest" required>
+          <option value="">Select test</option>
+          <option>Full Blood Count</option>
+          <option>Malaria Test</option>
+          <option>Blood Sugar</option>
+          <option>Urinalysis</option>
+          <option>Pregnancy Test</option>
+          <option>HIV Test</option>
+          <option>Stool Examination</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Priority</label>
+        <select id="labPriority">
+          <option>Routine</option>
+          <option>Urgent</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">
+      Submit Lab Request
+    </button>
+
+  </form>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Test</th>
+          <th>Priority</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="labTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- BILLING -->
+
+<section id="billing" class="section">
+
+  <h2>💰 Billing & Payments</h2>
+
+  <form id="billingForm">
+
+    <div class="form-grid">
+
+      <div>
+        <label>Patient</label>
+        <select id="billingPatient" required>
+          <option value="">Select patient</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Date</label>
+        <input type="date" id="billingDate" required>
+      </div>
+
+      <div>
+        <label>Service</label>
+        <input type="text" id="billingService" required>
+      </div>
+
+      <div>
+        <label>Amount (KSh)</label>
+        <input type="number" id="billingAmount" min="0" step="0.01" required>
+      </div>
+
+      <div>
+        <label>Payment Method</label>
+        <select id="paymentMethod">
+          <option>M-Pesa</option>
+          <option>Cash</option>
+          <option>Card</option>
+          <option>Insurance</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+    </div>
+
+    <button class="button" type="submit">
+      Record Payment
+    </button>
+
+  </form>
+
+  <div class="table-container">
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>Receipt</th>
+          <th>Patient</th>
+          <th>Date</th>
+          <th>Service</th>
+          <th>Amount</th>
+          <th>Method</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="billingTable"></tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+
+<!-- ADMINISTRATION -->
+
+<section id="admin" class="section">
+
+  <h2>⚙️ Clinic Administration</h2>
+
+  <div class="dashboard">
+
+    <div class="dashboard-card">
+      <div class="icon">👩‍⚕️</div>
+      <strong>Staff</strong>
+      Staff Management
+    </div>
+
+    <div class="dashboard-card">
+      <div class="icon">📊</div>
+      <strong>Reports</strong>
+      Clinic Reports
+    </div>
+
+    <div class="dashboard-card">
+      <div class="icon">🔐</div>
+      <strong>Security</strong>
+      Access Control
+    </div>
+
+    <div class="dashboard-card">
+      <div class="icon">📁</div>
+      <strong>Archive</strong>
+      Digital Records
+    </div>
+
+  </div>
+
+  <div class="notice">
+
+    <strong>Next development stage:</strong>
+
+    The clinic can later be connected to the Rycolyn
+    Supabase database for secure login, staff roles,
+    patient records, appointments, payments, reports
+    and audit logs.
+
+  </div>
+
+</section>
+
+
+<!-- RETURN -->
+
+<section class="section">
+
+  <h2>🏠 Rycolyn Headquarters</h2>
+
+  <p>
+    Return to the main Rycolyn Company website.
+  </p>
+
+  <a class="button secondary" href="index.html">
+    Back to Headquarters
+  </a>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <p><strong>RYCOLYN CLINIC</strong></p>
+
+  <p>
+    Quality Healthcare • Compassionate Service
+  </p>
+
+  <p>
+    © 2026 Rycolyn Company. All rights reserved.
+  </p>
+
+</footer>
+
+
+<script>
+
+let patients =
+  JSON.parse(localStorage.getItem("rycolynPatients")) || [];
+
+let appointments =
+  JSON.parse(localStorage.getItem("rycolynAppointments")) || [];
+
+let clinicalRecords =
+  JSON.parse(localStorage.getItem("rycolynClinicalRecords")) || [];
+
+let laboratoryRequests =
+  JSON.parse(localStorage.getItem("rycolynLaboratory")) || [];
+
+let billingRecords =
+  JSON.parse(localStorage.getItem("rycolynBilling")) || [];
+
+
+/* SAVE */
+
+function saveAll() {
+
+  localStorage.setItem(
+    "rycolynPatients",
+    JSON.stringify(patients)
+  );
+
+  localStorage.setItem(
+    "rycolynAppointments",
+    JSON.stringify(appointments)
+  );
+
+  localStorage.setItem(
+    "rycolynClinicalRecords",
+    JSON.stringify(clinicalRecords)
+  );
+
+  localStorage.setItem(
+    "rycolynLaboratory",
+    JSON.stringify(laboratoryRequests)
+  );
+
+  localStorage.setItem(
+    "rycolynBilling",
+    JSON.stringify(billingRecords)
+  );
+
+}
+
+
+/* PATIENT ID */
+
+function generatePatientID() {
+
+  return "RYC-" +
+    String(patients.length + 1).padStart(5, "0");
+
+}
+
+
+/* PATIENT NAME */
+
+function getPatientName(id) {
+
+  const patient =
+    patients.find(p => p.id === id);
+
+  if (!patient) {
+    return "Unknown";
+  }
+
+  return (
+    patient.firstName +
+    " " +
+    patient.middleName +
+    " " +
+    patient.lastName
+  ).replace(/\s+/g, " ").trim();
+
+}
+
+
+/* REGISTER PATIENT */
+
+document
+.getElementById("patientForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  const patient = {
+
+    id: generatePatientID(),
+
+    firstName:
+      document.getElementById("firstName").value.trim(),
+
+    middleName:
+      document.getElementById("middleName").value.trim(),
+
+    lastName:
+      document.getElementById("lastName").value.trim(),
+
+    dob:
+      document.getElementById("dob").value,
+
+    sex:
+      document.getElementById("sex").value,
+
+    phone:
+      document.getElementById("phone").value.trim(),
+
+    idNumber:
+      document.getElementById("idNumber").value.trim(),
+
+    nextOfKin:
+      document.getElementById("nextOfKin").value.trim(),
+
+    nextOfKinPhone:
+      document.getElementById("nextOfKinPhone").value.trim(),
+
+    address:
+      document.getElementById("address").value.trim()
+
+  };
+
+  patients.push(patient);
+
+  saveAll();
+
+  this.reset();
+
+  displayPatients();
+  updatePatientSelects();
+  updateDashboard();
+
+  alert(
+    "Patient registered successfully.\n\nPatient ID: " +
+    patient.id
+  );
+
+});
+
+
+/* DISPLAY PATIENTS */
+
+function displayPatients() {
+
+  const table =
+    document.getElementById("patientTable");
+
+  table.innerHTML = "";
+
+  if (patients.length === 0) {
+
+    table.innerHTML =
+      '<tr><td colspan="6" class="empty">No patients registered.</td></tr>';
+
+    return;
+  }
+
+  patients.forEach(function(patient, index) {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${patient.id}</td>
+
+      <td>
+        ${patient.firstName}
+        ${patient.middleName}
+        ${patient.lastName}
+      </td>
+
+      <td>${patient.dob}</td>
+
+      <td>${patient.sex}</td>
+
+      <td>${patient.phone || "-"}</td>
+
+      <td>
+        <button
+          class="button danger"
+          onclick="deletePatient(${index})">
+          Delete
+        </button>
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+}
+
+
+/* DELETE PATIENT */
+
+function deletePatient(index) {
+
+  if (!confirm("Delete this patient?")) {
+    return;
+  }
+
+  patients.splice(index, 1);
+
+  saveAll();
+
+  displayPatients();
+  updatePatientSelects();
+  updateDashboard();
+
+}
+
+
+/* DROPDOWNS */
+
+function updatePatientSelects() {
+
+  const ids = [
+    "appointmentPatient",
+    "clinicalPatient",
+    "labPatient",
+    "billingPatient"
+  ];
+
+  ids.forEach(function(id) {
+
+    const select =
+      document.getElementById(id);
+
+    select.innerHTML =
+      '<option value="">Select patient</option>';
+
+    patients.forEach(function(patient) {
+
+      const option =
+        document.createElement("option");
+
+      option.value = patient.id;
+
+      option.textContent =
+        patient.id +
+        " - " +
+        patient.firstName +
+        " " +
+        patient.lastName;
+
+      select.appendChild(option);
+
+    });
+
+  });
+
+}
+
+
+/* APPOINTMENT */
+
+document
+.getElementById("appointmentForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  appointments.push({
+
+    id: "APT-" + Date.now(),
+
+    patientID:
+      document.getElementById("appointmentPatient").value,
+
+    date:
+      document.getElementById("appointmentDate").value,
+
+    time:
+      document.getElementById("appointmentTime").value,
+
+    service:
+      document.getElementById("appointmentService").value,
+
+    status: "Pending"
+
+  });
+
+  saveAll();
+
+  this.reset();
+
+  displayAppointments();
+  updateDashboard();
+
+  alert("Appointment booked successfully.");
+
+});
+
+
+/* DISPLAY APPOINTMENTS */
+
+function displayAppointments() {
+
+  const table =
+    document.getElementById("appointmentTable");
+
+  table.innerHTML = "";
+
+  if (appointments.length === 0) {
+
+    table.innerHTML =
+      '<tr><td colspan="6" class="empty">No appointments.</td></tr>';
+
+    return;
+  }
+
+  appointments.forEach(function(item, index) {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${getPatientName(item.patientID)}</td>
+
+      <td>${item.date}</td>
+
+      <td>${item.time}</td>
+
+      <td>${item.service}</td>
+
+      <td>
+        <span class="status">
+          ${item.status}
+        </span>
+      </td>
+
+      <td>
+
+        <button
+          class="button success"
+          onclick="completeAppointment(${index})">
+          Complete
+        </button>
+
+        <button
+          class="button danger"
+          onclick="cancelAppointment(${index})">
+          Cancel
+        </button>
+
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+}
+
+
+function completeAppointment(index) {
+
+  appointments[index].status =
+    "Completed";
+
+  saveAll();
+
+  displayAppointments();
+
+}
+
+
+function cancelAppointment(index) {
+
+  appointments[index].status =
+    "Cancelled";
+
+  saveAll();
+
+  displayAppointments();
+
+}
+
+
+/* CLINICAL RECORD */
+
+document
+.getElementById("clinicalForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  clinicalRecords.push({
+
+    id: "CLN-" + Date.now(),
+
+    patientID:
+      document.getElementById("clinicalPatient").value,
+
+    date:
+      document.getElementById("visitDate").value,
+
+    clinician:
+      document.getElementById("clinician").value,
+
+    temperature:
+      document.getElementById("temperature").value,
+
+    bloodPressure:
+      document.getElementById("bloodPressure").value,
+
+    pulse:
+      document.getElementById("pulse").value,
+
+    complaint:
+      document.getElementById("complaint").value,
+
+    diagnosis:
+      document.getElementById("diagnosis").value,
+
+    treatment:
+      document.getElementById("treatment").value
+
+  });
+
+  saveAll();
+
+  this.reset();
+
+  displayClinicalRecords();
+
+  alert("Clinical record saved successfully.");
+
+});
+
+
+function displayClinicalRecords() {
+
+  const table =
+    document.getElementById("clinicalTable");
+
+  table.innerHTML = "";
+
+  if (clinicalRecords.length === 0) {
+
+    table.innerHTML =
+      '<tr><td colspan="6" class="empty">No clinical records.</td></tr>';
+
+    return;
+  }
+
+  clinicalRecords.forEach(function(record, index) {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${getPatientName(record.patientID)}</td>
+
+      <td>${record.date}</td>
+
+      <td>${record.clinician}</td>
+
+      <td>${record.complaint || "-"}</td>
+
+      <td>${record.diagnosis || "-"}</td>
+
+      <td>
+
+        <button
+          class="button danger"
+          onclick="deleteClinical(${index})">
+          Delete
+        </button>
+
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+}
+
+
+function deleteClinical(index) {
+
+  if (!confirm("Delete this clinical record?")) {
+    return;
+  }
+
+  clinicalRecords.splice(index, 1);
+
+  saveAll();
+
+  displayClinicalRecords();
+
+}
+
+
+/* LABORATORY */
+
+document
+.getElementById("labForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  laboratoryRequests.push({
+
+    id: "LAB-" + Date.now(),
+
+    patientID:
+      document.getElementById("labPatient").value,
+
+    date:
+      document.getElementById("labDate").value,
+
+    test:
+      document.getElementById("labTest").value,
+
+    priority:
+      document.getElementById("labPriority").value,
+
+    status: "Pending"
+
+  });
+
+  saveAll();
+
+  this.reset();
+
+  displayLaboratory();
+  updateDashboard();
+
+  alert("Laboratory request submitted.");
+
+});
+
+
+function displayLaboratory() {
+
+  const table =
+    document.getElementById("labTable");
+
+  table.innerHTML = "";
+
+  if (laboratoryRequests.length === 0) {
+
+    table.innerHTML =
+      '<tr><td colspan="6" class="empty">No laboratory requests.</td></tr>';
+
+    return;
+  }
+
+  laboratoryRequests.forEach(function(item, index) {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${getPatientName(item.patientID)}</td>
+
+      <td>${item.date}</td>
+
+      <td>${item.test}</td>
+
+      <td>${item.priority}</td>
+
+      <td>
+        <span class="status">
+          ${item.status}
+        </span>
+      </td>
+
+      <td>
+
+        <button
+          class="button danger"
+          onclick="deleteLab(${index})">
+          Delete
+        </button>
+
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+}
+
+
+function deleteLab(index) {
+
+  if (!confirm("Delete this laboratory request?")) {
+    return;
+  }
+
+  laboratoryRequests.splice(index, 1);
+
+  saveAll();
+
+  displayLaboratory();
+  updateDashboard();
+
+}
+
+
+/* BILLING */
+
+document
+.getElementById("billingForm")
+.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+
+  const receipt =
+    "RCT-" +
+    new Date().getFullYear() +
+    "-" +
+    String(billingRecords.length + 1).padStart(5, "0");
+
+  billingRecords.push({
+
+    receipt: receipt,
+
+    patientID:
+      document.getElementById("billingPatient").value,
+
+    date:
+      document.getElementById("billingDate").value,
+
+    service:
+      document.getElementById("billingService").value,
+
+    amount:
+      Number(
+        document.getElementById("billingAmount").value
+      ),
+
+    method:
+      document.getElementById("paymentMethod").value
+
+  });
+
+  saveAll();
+
+  this.reset();
+
+  displayBilling();
+  updateDashboard();
+
+  alert(
+    "Payment recorded successfully.\n\nReceipt: " +
+    receipt
+  );
+
+});
+
+
+function displayBilling() {
+
+  const table =
+    document.getElementById("billingTable");
+
+  table.innerHTML = "";
+
+  if (billingRecords.length === 0) {
+
+    table.innerHTML =
+      '<tr><td colspan="7" class="empty">No billing records.</td></tr>';
+
+    return;
+  }
+
+  billingRecords.forEach(function(item, index) {
+
+    const row =
+      document.createElement("tr");
+
+    row.innerHTML = `
+
+      <td>${item.receipt}</td>
+
+      <td>${getPatientName(item.patientID)}</td>
+
+      <td>${item.date}</td>
+
+      <td>${item.service}</td>
+
+      <td>KSh ${item.amount.toFixed(2)}</td>
+
+      <td>${item.method}</td>
+
+      <td>
+
+        <button
+          class="button danger"
+          onclick="deleteBilling(${index})">
+          Delete
+        </button>
+
+      </td>
+
+    `;
+
+    table.appendChild(row);
+
+  });
+
+}
+
+
+function deleteBilling(index) {
+
+  if (!confirm("Delete this billing record?")) {
+    return;
+  }
+
+  billingRecords.splice(index, 1);
+
+  saveAll();
+
+  displayBilling();
+  updateDashboard();
+
+}
+
+
+/* DASHBOARD */
+
+function updateDashboard() {
+
+  document.getElementById("patientCount").textContent =
+    patients.length;
+
+  document.getElementById("appointmentCount").textContent =
+    appointments.length;
+
+  document.getElementById("labCount").textContent =
+    laboratoryRequests.length;
+
+  document.getElementById("billingCount").textContent =
+    billingRecords.length;
+
+}
+
+
+/* START */
+
+displayPatients();
+
+updatePatientSelects();
+
+displayAppointments();
+
+displayClinicalRecords();
+
+displayLaboratory();
+
+displayBilling();
+
+updateDashboard();
+
+</script>
+
+</body>
+  </html>

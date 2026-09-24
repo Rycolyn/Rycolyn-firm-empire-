@@ -2343,7 +2343,16 @@
        JAVASCRIPT
   ========================== -->
 
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script>
+const SUPABASE_URL = "https://askvkdgdlbsjcdcwosof.supabase.co";
+
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_ZAmEaqe4HFkiq1vqOeNs1w_czxoSxAT";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
     /* ==========================================
        SERVICE REQUEST STORAGE
@@ -2358,82 +2367,103 @@
     const serviceForm =
       document.getElementById("serviceForm");
 
+serviceForm.addEventListener(
+  "submit",
+  async function(event) {
 
-    serviceForm.addEventListener(
-      "submit",
-      function(event) {
+    event.preventDefault();
 
-        event.preventDefault();
+    const button =
+      serviceForm.querySelector(
+        'button[type="submit"]'
+      );
 
+    button.disabled = true;
+    button.textContent = "Submitting...";
 
-        const request = {
+    const request = {
 
-          id:
-            "RY-" +
-            Date.now(),
+      full_name:
+        document.getElementById("fullName").value.trim(),
 
-          fullName:
-            document.getElementById("fullName").value.trim(),
+      email:
+        document.getElementById("email").value.trim(),
 
-          email:
-            document.getElementById("email").value.trim(),
+      country:
+        document.getElementById("country").value.trim() || null,
 
-          country:
-            document.getElementById("country").value.trim(),
+      service_type:
+        document.getElementById("serviceType").value,
 
-          service:
-            document.getElementById("serviceType").value,
+      preferred_date:
+        document.getElementById("preferredDate").value || null,
 
-          date:
-            document.getElementById("preferredDate").value,
+      preferred_time:
+        document.getElementById("preferredTime").value || null,
 
-          time:
-            document.getElementById("preferredTime").value,
+      duration:
+        document.getElementById("duration").value || null,
 
-          duration:
-            document.getElementById("duration").value,
+      preferred_language:
+        document.getElementById("language").value || null,
 
-          language:
-            document.getElementById("language").value,
+      description:
+        document.getElementById("description").value.trim(),
 
-          description:
-            document.getElementById("description").value.trim(),
-
-          createdAt:
-            new Date().toISOString()
-
-        };
-
-
-        serviceRequests.push(request);
+      status: "new"
+    };
 
 
-        localStorage.setItem(
-          "rycolynServiceRequests",
-          JSON.stringify(serviceRequests)
-        );
+    const { error } =
+      await supabaseClient
+        .from("service_requests")
+        .insert([request]);
 
 
+    if (error) {
+
+      console.error(
+        "Supabase error:",
+        error
+      );
+
+      alert(
+        "We could not submit your request right now. Please try again."
+      );
+
+      button.disabled = false;
+      button.textContent = "Submit Request";
+
+      return;
+    }
+
+
+    document.getElementById(
+      "successMessage"
+    ).style.display = "block";
+
+
+    serviceForm.reset();
+
+
+    button.disabled = false;
+    button.textContent = "Submit Request";
+
+
+    window.scrollTo({
+
+      top:
         document.getElementById(
           "successMessage"
-        ).style.display = "block";
+        ).offsetTop - 120,
 
+      behavior: "smooth"
 
-        serviceForm.reset();
+    });
 
-
-        window.scrollTo({
-          top:
-            document.getElementById(
-              "successMessage"
-            ).offsetTop - 120,
-
-          behavior:
-            "smooth"
-        });
-
-      }
-    );
+  }
+);
+    
 
 
     /* ==========================================

@@ -1,0 +1,2794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>Rycolyn Enterprise | Digital Services, Education & Opportunities</title>
+
+  <meta
+    name="description"
+    content="Rycolyn Enterprise provides online tutoring, nursing and NCK/NCLEX preparation, caregiving education, research and project support, digital resources and professional services."
+  >
+
+  <meta
+    name="keywords"
+    content="Rycolyn Enterprise, online tutoring, nursing tutoring, NCK preparation, NCLEX preparation, caregiving, caregiver jobs abroad, research support, online library, Kenya"
+  >
+
+  <meta name="theme-color" content="#0b3d5c">
+
+  <style>
+    :root {
+      --primary: #0b3d5c;
+      --secondary: #126e8c;
+      --accent: #f4b942;
+      --light: #f4f8fb;
+      --white: #ffffff;
+      --dark: #12202b;
+      --text: #34495e;
+      --muted: #6b7c89;
+      --success: #18864b;
+      --danger: #b33a3a;
+      --border: #dbe5eb;
+      --shadow: 0 8px 25px rgba(10, 48, 72, 0.10);
+      --radius: 16px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    header {
+      background:
+        linear-gradient(
+          135deg,
+          rgba(11,61,92,0.98),
+          rgba(18,110,140,0.95)
+        );
+
+      color: var(--white);
+      padding: 70px 20px 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+      top: -120px;
+      right: -80px;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(244,185,66,0.08);
+      bottom: -100px;
+      left: -60px;
+    }
+
+    .header-content {
+      max-width: 1000px;
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      font-size: 46px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .tagline {
+      font-size: 20px;
+      margin-bottom: 12px;
+      color: #fdfdfd;
+    }
+
+    .header-description {
+      max-width: 760px;
+      margin: 0 auto 25px;
+      opacity: 0.95;
+      font-size: 16px;
+    }
+
+    .header-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* =========================
+       NAVIGATION
+    ========================== */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.97);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      padding: 12px 10px;
+    }
+
+    .nav-inner {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--primary);
+      font-weight: 700;
+      padding: 8px 11px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      background: var(--light);
+      color: var(--secondary);
+    }
+
+    /* =========================
+       GENERAL
+    ========================== */
+
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 18px 60px;
+    }
+
+    section {
+      scroll-margin-top: 90px;
+    }
+
+    .section {
+      margin-top: 45px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      color: var(--primary);
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      max-width: 760px;
+      margin: auto;
+      color: var(--text);
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(219,229,235,0.8);
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--secondary);
+      color: var(--white);
+      padding: 11px 18px;
+      border: none;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .button:hover {
+      background: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .button.secondary {
+      background: var(--white);
+      color: var(--primary);
+      border: 1px solid rgba(255,255,255,0.7);
+    }
+
+    .button.secondary:hover {
+      background: #f0f5f8;
+    }
+
+    .button.gold {
+      background: var(--accent);
+      color: #202020;
+    }
+
+    .button.gold:hover {
+      background: #dca52e;
+    }
+
+    .button.full {
+      width: 100%;
+      text-align: center;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    /* =========================
+       WELCOME
+    ========================== */
+
+    .welcome {
+      background: var(--white);
+      padding: 35px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .welcome h2 {
+      color: var(--primary);
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .welcome p {
+      max-width: 820px;
+      margin: auto;
+      color: var(--text);
+    }
+
+    .highlight-strip {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .highlight {
+      background: var(--light);
+      padding: 15px;
+      border-radius: 12px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* =========================
+       SERVICE CARDS
+    ========================== */
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .service-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 290px;
+    }
+
+    .service-icon {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .service-card h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--text);
+      margin-bottom: 15px;
+    }
+
+    .service-card ul {
+      padding-left: 19px;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+
+    .service-card li {
+      margin-bottom: 5px;
+    }
+
+    .service-card .button {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    /* =========================
+       EDUCATION
+    ========================== */
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .education-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 25px;
+      box-shadow: var(--shadow);
+      border-top: 4px solid var(--secondary);
+    }
+
+    .education-card h3 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .education-card ul {
+      padding-left: 20px;
+      color: var(--text);
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       LIBRARY
+    ========================== */
+
+    .library {
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #eef7fb
+        );
+
+      border-radius: var(--radius);
+      padding: 35px;
+      box-shadow: var(--shadow);
+    }
+
+    .library-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .resource {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 20px;
+    }
+
+    .resource h3 {
+      color: var(--primary);
+      font-size: 19px;
+      margin-bottom: 8px;
+    }
+
+    .resource p {
+      color: var(--text);
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      display: inline-block;
+      font-weight: 800;
+      color: var(--success);
+      margin-bottom: 12px;
+    }
+
+    /* =========================
+       HOW IT WORKS
+    ========================== */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 15px;
+    }
+
+    .step {
+      text-align: center;
+      background: white;
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .step-number {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--secondary);
+      color: white;
+      border-radius: 50%;
+      margin: 0 auto 12px;
+      font-weight: 800;
+    }
+
+    .step h3 {
+      color: var(--primary);
+      margin-bottom: 7px;
+    }
+
+    /* =========================
+       FORMS
+    ========================== */
+
+    .form-wrapper {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: white;
+      color: var(--dark);
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px rgba(18,110,140,0.10);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .form-actions {
+      margin-top: 20px;
+    }
+
+    .success-message {
+      display: none;
+      background: #eaf8f0;
+      color: #12673b;
+      border: 1px solid #b9e4cb;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+    }
+
+    /* =========================
+       CAREGIVING
+    ========================== */
+
+    .caregiving-banner {
+      background:
+        linear-gradient(
+          135deg,
+          #fff8e7,
+          #ffffff
+        );
+
+      border-left: 6px solid var(--accent);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .caregiving-banner h2 {
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    /* =========================
+       RESEARCH
+    ========================== */
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .research-item {
+      background: white;
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .research-item h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .research-item p {
+      color: var(--text);
+    }
+
+    /* =========================
+       THERESA
+    ========================== */
+
+    .theresa {
+      background:
+        linear-gradient(
+          135deg,
+          #fff,
+          #f4efff
+        );
+
+      padding: 35px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .theresa h2 {
+      color: #54317c;
+      margin-bottom: 10px;
+    }
+
+    /* =========================
+       CONTACT
+    ========================== */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      text-align: center;
+      background: white;
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .contact-card h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    /* =========================
+       INTERNAL INVENTORY
+    ========================== */
+
+    .internal {
+      margin-top: 60px;
+      background: #fffdf7;
+      border: 2px dashed #d8b96d;
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+
+    .internal-badge {
+      display: inline-block;
+      background: #f4e3b2;
+      color: #654d12;
+      padding: 5px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+
+    .summary-box {
+      background: white;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+      border: 1px solid var(--border);
+    }
+
+    .summary-box strong {
+      display: block;
+      font-size: 23px;
+      color: var(--secondary);
+    }
+
+    .inventory-form {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      min-width: 750px;
+      border-collapse: collapse;
+      background: white;
+    }
+
+    th,
+    td {
+      padding: 11px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+    }
+
+    .delete-button {
+      background: var(--danger);
+      color: white;
+      border: none;
+      padding: 7px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+
+    footer h3 {
+      margin-bottom: 8px;
+    }
+
+    footer p {
+      margin: 5px 0;
+      opacity: 0.9;
+    }
+
+    .footer-links {
+      margin: 18px 0;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: white;
+    }
+
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 800px) {
+
+      .logo {
+        font-size: 34px;
+      }
+
+      .tagline {
+        font-size: 17px;
+      }
+
+      .highlight-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full-width {
+        grid-column: auto;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .inventory-form {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      header {
+        padding: 50px 15px 45px;
+      }
+
+      .logo {
+        font-size: 29px;
+      }
+
+      main {
+        padding-left: 12px;
+        padding-right: 12px;
+      }
+
+      .welcome,
+      .library,
+      .form-wrapper,
+      .caregiving-banner,
+      .theresa,
+      .internal {
+        padding: 22px;
+      }
+
+      .highlight-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .summary {
+        grid-template-columns: 1fr;
+      }
+
+      nav a {
+        font-size: 12px;
+        padding: 6px 7px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HEADER
+  ========================== -->
+
+  <header id="home">
+
+    <div class="header-content">
+
+      <div class="logo">
+        RYCOLYN ENTERPRISE
+      </div>
+
+      <div class="tagline">
+        We serve, we grow, there is hope.
+      </div>
+
+      <p class="header-description">
+        A growing digital enterprise providing education,
+        professional support, digital resources, healthcare-related
+        learning, caregiving opportunities and practical services
+        to clients and learners in Kenya and beyond.
+      </p>
+
+      <div class="header-buttons">
+
+        <a class="button gold" href="#services">
+          Explore Services
+        </a>
+
+        <a class="button secondary" href="#tutoring">
+          Start Learning
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <nav>
+
+    <div class="nav-inner">
+
+      <a href="#home">Home</a>
+
+      <a href="#services">Services</a>
+
+      <a href="#tutoring">Tutoring</a>
+
+      <a href="#library">Library</a>
+
+      <a href="#caregiving">Caregiving</a>
+
+      <a href="#research">Research</a>
+
+      <a href="#booking">Book</a>
+
+      <a href="#contact">Contact</a>
+
+    </div>
+
+  </nav>
+
+
+  <main>
+
+    <!-- =========================
+         WELCOME
+    ========================== -->
+
+    <section class="welcome">
+
+      <h2>
+        Welcome to Rycolyn Enterprise
+      </h2>
+
+      <p>
+        Our goal is to use technology to make useful services,
+        education and opportunities easier to access. Whether you
+        need academic support, nursing preparation, caregiving
+        training, research guidance or digital learning resources,
+        you can start here.
+      </p>
+
+      <div class="highlight-strip">
+
+        <div class="highlight">
+          🎓 Online Learning
+        </div>
+
+        <div class="highlight">
+          📚 Digital Library
+        </div>
+
+        <div class="highlight">
+          🌍 Global Opportunities
+        </div>
+
+        <div class="highlight">
+          💻 Digital Services
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MAIN SERVICES
+    ========================== -->
+
+    <section id="services" class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          Our Digital Services
+        </h2>
+
+        <p>
+          Practical services designed for students,
+          professionals, families, caregivers and people
+          looking for new opportunities.
+        </p>
+
+      </div>
+
+
+      <div class="service-grid">
+
+        <!-- Tutoring -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            🎓
+          </div>
+
+          <h3>
+            Online Tutoring
+          </h3>
+
+          <p>
+            Flexible online academic support for learners
+            from primary school through professional education.
+          </p>
+
+          <ul>
+            <li>KCSE preparation</li>
+            <li>KJSEA / Grade 4–9</li>
+            <li>One-to-one tutoring</li>
+            <li>Homework and revision</li>
+          </ul>
+
+          <a class="button" href="#tutoring">
+            View Tutoring
+          </a>
+
+        </div>
+
+
+        <!-- Nursing -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            🩺
+          </div>
+
+          <h3>
+            Nursing Education
+          </h3>
+
+          <p>
+            Learning support for nursing students and
+            nurses preparing for professional examinations.
+          </p>
+
+          <ul>
+            <li>NCK preparation</li>
+            <li>NCLEX preparation</li>
+            <li>Clinical revision</li>
+            <li>Study materials</li>
+          </ul>
+
+          <a class="button" href="#nursing">
+            Nursing Support
+          </a>
+
+        </div>
+
+
+        <!-- Caregiving -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            ❤️
+          </div>
+
+          <h3>
+            Caregiving Education
+          </h3>
+
+          <p>
+            Support for certificate and diploma caregiving
+            learners preparing for local and international opportunities.
+          </p>
+
+          <ul>
+            <li>Certificate support</li>
+            <li>Diploma support</li>
+            <li>Skills revision</li>
+            <li>International preparation</li>
+          </ul>
+
+          <a class="button" href="#caregiving">
+            Caregiving
+          </a>
+
+        </div>
+
+
+        <!-- Research -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            📑
+          </div>
+
+          <h3>
+            Projects & Research
+          </h3>
+
+          <p>
+            Academic project and research guidance from
+            topic development to presentation preparation.
+          </p>
+
+          <ul>
+            <li>Research guidance</li>
+            <li>Project planning</li>
+            <li>Proposal support</li>
+            <li>Presentation preparation</li>
+          </ul>
+
+          <a class="button" href="#research">
+            Research Support
+          </a>
+
+        </div>
+
+
+        <!-- Library -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            📚
+          </div>
+
+          <h3>
+            Online Library
+          </h3>
+
+          <p>
+            Affordable digital learning materials that
+            can be accessed online as the library grows.
+          </p>
+
+          <ul>
+            <li>Revision materials</li>
+            <li>Nursing resources</li>
+            <li>Caregiving resources</li>
+            <li>Study guides</li>
+          </ul>
+
+          <a class="button" href="#library">
+            Visit Library
+          </a>
+
+        </div>
+
+
+        <!-- Digital -->
+
+        <div class="card service-card">
+
+          <div class="service-icon">
+            💻
+          </div>
+
+          <h3>
+            Digital Services
+          </h3>
+
+          <p>
+            Digital support for individuals, small businesses
+            and organizations that need practical online solutions.
+          </p>
+
+          <ul>
+            <li>Website support</li>
+            <li>Digital forms</li>
+            <li>Online systems</li>
+            <li>Digital organization</li>
+          </ul>
+
+          <a class="button" href="#contact">
+            Request Service
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TUTORING
+    ========================== -->
+
+    <section id="tutoring" class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          🎓 Online Tutoring Centre
+        </h2>
+
+        <p>
+          Learn from wherever you are. Sessions can be
+          organized for individual learners or small groups.
+        </p>
+
+      </div>
+
+
+      <div class="education-grid">
+
+        <div class="education-card">
+
+          <h3>
+            📘 School Learners
+          </h3>
+
+          <ul>
+            <li>Grade 4–9</li>
+            <li>KJSEA preparation</li>
+            <li>KCSE preparation</li>
+            <li>Mathematics</li>
+            <li>English & Kiswahili</li>
+            <li>Integrated Science</li>
+            <li>Agriculture</li>
+            <li>CRE / Social Sciences</li>
+          </ul>
+
+          <a class="button full" href="#booking">
+            Request a Lesson
+          </a>
+
+        </div>
+
+
+        <div class="education-card" id="nursing">
+
+          <h3>
+            🩺 Nursing Students
+          </h3>
+
+          <ul>
+            <li>NCK examination preparation</li>
+            <li>NCLEX preparation</li>
+            <li>Medical-surgical nursing</li>
+            <li>Maternal & child health</li>
+            <li>Community health</li>
+            <li>Pharmacology revision</li>
+            <li>Clinical case revision</li>
+          </ul>
+
+          <a class="button full" href="#booking">
+            Request Nursing Support
+          </a>
+
+        </div>
+
+
+        <div class="education-card">
+
+          <h3>
+            ❤️ Caregiving Learners
+          </h3>
+
+          <ul>
+            <li>Certificate caregiving</li>
+            <li>Diploma caregiving</li>
+            <li>Care of older adults</li>
+            <li>Basic health support</li>
+            <li>Communication skills</li>
+            <li>Care documentation</li>
+            <li>International preparation</li>
+          </ul>
+
+          <a class="button full" href="#booking">
+            Request Caregiving Support
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         LIBRARY
+    ========================== -->
+
+    <section id="library" class="section">
+
+      <div class="library">
+
+        <div class="section-heading">
+
+          <h2>
+            📚 Rycolyn Online Library
+          </h2>
+
+          <p>
+            Affordable digital learning materials for students,
+            nurses, caregivers, teachers and researchers.
+          </p>
+
+        </div>
+
+
+        <div class="library-grid">
+
+          <div class="resource">
+
+            <h3>
+              📘 KCSE & KJSEA Revision
+            </h3>
+
+            <p>
+              Revision questions, topic summaries,
+              homework and examination preparation materials.
+            </p>
+
+            <span class="price">
+              Affordable digital resources
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('KCSE & KJSEA Revision Materials')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+
+          <div class="resource">
+
+            <h3>
+              🩺 Nursing Resources
+            </h3>
+
+            <p>
+              Nursing revision notes, examination preparation,
+              clinical learning resources and study guides.
+            </p>
+
+            <span class="price">
+              Affordable digital resources
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('Nursing Study Materials')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+
+          <div class="resource">
+
+            <h3>
+              ❤️ Caregiving Resources
+            </h3>
+
+            <p>
+              Study materials for certificate and diploma
+              caregiving learners.
+            </p>
+
+            <span class="price">
+              Affordable digital resources
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('Caregiving Study Materials')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+
+          <div class="resource">
+
+            <h3>
+              📑 Research Guides
+            </h3>
+
+            <p>
+              Resources covering research planning,
+              academic writing, proposals and presentations.
+            </p>
+
+            <span class="price">
+              Affordable digital resources
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('Research Guides')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+
+          <div class="resource">
+
+            <h3>
+              👩🏽‍⚕️ Clinical Learning
+            </h3>
+
+            <p>
+              Practical educational resources for healthcare
+              learners and professionals.
+            </p>
+
+            <span class="price">
+              Affordable digital resources
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('Clinical Learning Materials')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+
+          <div class="resource">
+
+            <h3>
+              📝 Custom Materials
+            </h3>
+
+            <p>
+              Request a particular topic, revision package,
+              study guide or educational resource.
+            </p>
+
+            <span class="price">
+              Request a quote
+            </span>
+
+            <button
+              class="button full"
+              onclick="requestResource('Custom Learning Material')"
+            >
+              Request Material
+            </button>
+
+          </div>
+
+        </div>
+
+        <p class="small-note">
+          Digital materials will be made available progressively.
+          Payment and secure delivery will be connected during the
+          next development stage.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CAREGIVING ABROAD
+    ========================== -->
+
+    <section id="caregiving" class="section">
+
+      <div class="caregiving-banner">
+
+        <h2>
+          🌍 Caregiving & International Opportunities
+        </h2>
+
+        <p>
+          We aim to support caregivers who want to develop their
+          skills and prepare for opportunities locally and abroad.
+        </p>
+
+        <br>
+
+        <div class="education-grid">
+
+          <div>
+            <h3>
+              🎓 Training Support
+            </h3>
+
+            <p>
+              Certificate and diploma learners can receive
+              structured learning and revision support.
+            </p>
+          </div>
+
+
+          <div>
+            <h3>
+              📄 Career Preparation
+            </h3>
+
+            <p>
+              Support with CV preparation, interview preparation,
+              professional presentation and application guidance.
+            </p>
+          </div>
+
+
+          <div>
+            <h3>
+              ✈️ International Preparation
+            </h3>
+
+            <p>
+              Guidance for learners researching legitimate
+              international caregiving opportunities and requirements.
+            </p>
+          </div>
+
+        </div>
+
+        <br>
+
+        <a class="button gold" href="#booking">
+          Request Caregiving Support
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         RESEARCH
+    ========================== -->
+
+    <section id="research" class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          📑 Projects & Research Support
+        </h2>
+
+        <p>
+          Academic and professional research guidance designed
+          to help clients understand and complete their own work
+          effectively.
+        </p>
+
+      </div>
+
+
+      <div class="research-grid">
+
+        <div class="research-item">
+
+          <h3>
+            💡 Topic Development
+          </h3>
+
+          <p>
+            Help narrowing a broad idea into a practical
+            research or project topic.
+          </p>
+
+        </div>
+
+
+        <div class="research-item">
+
+          <h3>
+            📋 Proposal Guidance
+          </h3>
+
+          <p>
+            Guidance on research questions, objectives,
+            literature review structure and methodology.
+          </p>
+
+        </div>
+
+
+        <div class="research-item">
+
+          <h3>
+            📊 Data & Analysis Guidance
+          </h3>
+
+          <p>
+            Educational support on organizing data and
+            understanding appropriate analysis approaches.
+          </p>
+
+        </div>
+
+
+        <div class="research-item">
+
+          <h3>
+            🖥️ Presentation Support
+          </h3>
+
+          <p>
+            Help organizing research findings into clear
+            presentations and academic reports.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div style="text-align:center; margin-top:25px;">
+
+        <a class="button" href="#booking">
+          Request Research Support
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HOW IT WORKS
+    ========================== -->
+
+    <section class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          How It Works
+        </h2>
+
+        <p>
+          Starting a service request is simple.
+        </p>
+
+      </div>
+
+
+      <div class="steps">
+
+        <div class="step">
+
+          <div class="step-number">
+            1
+          </div>
+
+          <h3>
+            Choose
+          </h3>
+
+          <p>
+            Select the service or learning support you need.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            2
+          </div>
+
+          <h3>
+            Request
+          </h3>
+
+          <p>
+            Send your details and tell us what you need.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            3
+          </div>
+
+          <h3>
+            Confirm
+          </h3>
+
+          <p>
+            We review your request and provide the next steps.
+          </p>
+
+        </div>
+
+
+        <div class="step">
+
+          <div class="step-number">
+            4
+          </div>
+
+          <h3>
+            Learn / Receive
+          </h3>
+
+          <p>
+            Access the service, session or resource you requested.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         BOOKING / REQUEST FORM
+    ========================== -->
+
+    <section id="booking" class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          📅 Request a Service
+        </h2>
+
+        <p>
+          Complete the form below. A service request is not a
+          confirmed appointment until confirmation is provided.
+        </p>
+
+      </div>
+
+
+      <div class="form-wrapper">
+
+        <form id="serviceForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label for="fullName">
+                Full Name
+              </label>
+
+              <input
+                type="text"
+                id="fullName"
+                required
+                placeholder="Your full name"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="email">
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                id="email"
+                required
+                placeholder="you@example.com"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="country">
+                Country
+              </label>
+
+              <input
+                type="text"
+                id="country"
+                placeholder="Kenya"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="serviceType">
+                Service Needed
+              </label>
+
+              <select id="serviceType" required>
+
+                <option value="">
+                  Select a service
+                </option>
+
+                <option value="School Tutoring">
+                  School Tutoring
+                </option>
+
+                <option value="Nursing / NCK">
+                  Nursing / NCK Preparation
+                </option>
+
+                <option value="NCLEX Preparation">
+                  NCLEX Preparation
+                </option>
+
+                <option value="Caregiving Education">
+                  Caregiving Education
+                </option>
+
+                <option value="Caregiving Abroad">
+                  Caregiving Abroad Preparation
+                </option>
+
+                <option value="Projects & Research">
+                  Projects & Research
+                </option>
+
+                <option value="Online Library">
+                  Online Library
+                </option>
+
+                <option value="Digital Services">
+                  Digital Services
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="preferredDate">
+                Preferred Date
+              </label>
+
+              <input
+                type="date"
+                id="preferredDate"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="preferredTime">
+                Preferred Time
+              </label>
+
+              <input
+                type="time"
+                id="preferredTime"
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="duration">
+                Preferred Duration
+              </label>
+
+              <select id="duration">
+
+                <option value="30 minutes">
+                  30 minutes
+                </option>
+
+                <option value="45 minutes">
+                  45 minutes
+                </option>
+
+                <option value="60 minutes">
+                  60 minutes
+                </option>
+
+                <option value="90 minutes">
+                  90 minutes
+                </option>
+
+                <option value="120 minutes">
+                  120 minutes
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label for="language">
+                Preferred Language
+              </label>
+
+              <select id="language">
+
+                <option>
+                  English
+                </option>
+
+                <option>
+                  Kiswahili
+                </option>
+
+                <option>
+                  Other
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="form-group full-width">
+
+              <label for="description">
+                Tell us what you need
+              </label>
+
+              <textarea
+                id="description"
+                required
+                placeholder="Describe the topic, service, project or support you need..."
+              ></textarea>
+
+            </div>
+
+          </div>
+
+
+          <div class="form-actions">
+
+            <button
+              class="button full"
+              type="submit"
+            >
+              Submit Service Request
+            </button>
+
+          </div>
+
+
+          <div
+            id="successMessage"
+            class="success-message"
+          >
+            Thank you. Your request has been recorded on this
+            device. The next stage will connect this form to
+            the Rycolyn online database and notification system.
+          </div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         THERESA HOPE GLOBAL
+    ========================== -->
+
+    <section class="section">
+
+      <div class="theresa">
+
+        <h2>
+          ❤️ Theresa Hope Global
+        </h2>
+
+        <p>
+          A separate global platform offering personal,
+          emotional, psychological and spiritual support.
+        </p>
+
+        <br>
+
+        <a
+          class="button"
+          href="https://theresahopeglobal.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Visit Theresa Hope Global
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CLINIC / HEALTH
+    ========================== -->
+
+    <section class="section">
+
+      <div class="card">
+
+        <div class="section-heading">
+
+          <h2>
+            🏥 Rycolyn Clinic
+          </h2>
+
+          <p>
+            Healthcare services and clinical administration
+            are being developed as a dedicated part of Rycolyn Enterprise.
+          </p>
+
+        </div>
+
+        <div style="text-align:center;">
+
+          <a
+            class="button"
+            href="clinic.html"
+          >
+            Open Clinic Portal
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact" class="section">
+
+      <div class="section-heading">
+
+        <h2>
+          📞 Contact Rycolyn Enterprise
+        </h2>
+
+        <p>
+          For a service request, use the form above. You can also
+          use the contact channels below once they are configured.
+        </p>
+
+      </div>
+
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+
+          <h3>
+            📧 Email
+          </h3>
+
+          <p>
+            Use the service request form for now.
+          </p>
+
+          <a
+            class="button"
+            href="#booking"
+          >
+            Send Request
+          </a>
+
+        </div>
+
+
+        <div class="contact-card">
+
+          <h3>
+            💬 WhatsApp
+          </h3>
+
+          <p>
+            WhatsApp communication can be connected here.
+          </p>
+
+          <a
+            class="button"
+            href="#booking"
+          >
+            Request Contact
+          </a>
+
+        </div>
+
+
+        <div class="contact-card">
+
+          <h3>
+            🌍 Online
+          </h3>
+
+          <p>
+            Services can be requested from Kenya and other
+            countries as availability expands.
+          </p>
+
+          <a
+            class="button"
+            href="#services"
+          >
+            Explore Services
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         INTERNAL STOCK SYSTEM
+    ========================== -->
+
+    <section class="internal">
+
+      <span class="internal-badge">
+        INTERNAL / ADMIN AREA
+      </span>
+
+      <h2>
+        📦 Rycolyn Stock Management
+      </h2>
+
+      <p>
+        This section is retained from the original Rycolyn
+        Enterprise system for internal stock tracking.
+        It is not intended as a client-facing service.
+      </p>
+
+
+      <div class="summary">
+
+        <div class="summary-box">
+
+          <strong id="totalProducts">
+            0
+          </strong>
+
+          Products
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="totalStock">
+            0
+          </strong>
+
+          Units
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="totalValue">
+            KSh 0
+          </strong>
+
+          Stock Value
+
+        </div>
+
+
+        <div class="summary-box">
+
+          <strong id="totalProfit">
+            KSh 0
+          </strong>
+
+          Potential Profit
+
+        </div>
+
+      </div>
+
+
+      <h3>
+        Add / Receive Stock
+      </h3>
+
+
+      <div class="inventory-form">
+
+        <input
+          type="text"
+          id="productName"
+          placeholder="Product name"
+        >
+
+        <input
+          type="number"
+          id="quantity"
+          placeholder="Quantity"
+          min="1"
+        >
+
+        <input
+          type="number"
+          id="buyingPrice"
+          placeholder="Buying price"
+          min="0"
+          step="0.01"
+        >
+
+        <input
+          type="number"
+          id="sellingPrice"
+          placeholder="Selling price"
+          min="0"
+          step="0.01"
+        >
+
+      </div>
+
+
+      <br>
+
+      <button
+        class="button"
+        onclick="addProduct()"
+      >
+        Add Stock
+      </button>
+
+
+      <div class="table-container">
+
+        <table>
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Product
+              </th>
+
+              <th>
+                Quantity
+              </th>
+
+              <th>
+                Buying Price
+              </th>
+
+              <th>
+                Selling Price
+              </th>
+
+              <th>
+                Stock Value
+              </th>
+
+              <th>
+                Potential Profit
+              </th>
+
+              <th>
+                Action
+              </th>
+
+            </tr>
+
+          </thead>
+
+          <tbody id="inventoryTable">
+          </tbody>
+
+        </table>
+
+      </div>
+
+
+      <br>
+
+      <button
+        class="button"
+        onclick="clearInventory()"
+      >
+        Clear Inventory
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <h3>
+      RYCOLYN ENTERPRISE
+    </h3>
+
+    <p>
+      We serve, we grow, there is hope.
+    </p>
+
+    <div class="footer-links">
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#library">
+        Library
+      </a>
+
+      <a href="#tutoring">
+        Tutoring
+      </a>
+
+      <a href="#contact">
+        Contact
+      </a>
+
+    </div>
+
+    <p>
+      © 2026 Rycolyn Enterprise. All rights reserved.
+    </p>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script>
+
+    /* ==========================================
+       SERVICE REQUEST STORAGE
+    ========================================== */
+
+    let serviceRequests =
+      JSON.parse(
+        localStorage.getItem("rycolynServiceRequests")
+      ) || [];
+
+
+    const serviceForm =
+      document.getElementById("serviceForm");
+
+
+    serviceForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const request = {
+
+          id:
+            "RY-" +
+            Date.now(),
+
+          fullName:
+            document.getElementById("fullName").value.trim(),
+
+          email:
+            document.getElementById("email").value.trim(),
+
+          country:
+            document.getElementById("country").value.trim(),
+
+          service:
+            document.getElementById("serviceType").value,
+
+          date:
+            document.getElementById("preferredDate").value,
+
+          time:
+            document.getElementById("preferredTime").value,
+
+          duration:
+            document.getElementById("duration").value,
+
+          language:
+            document.getElementById("language").value,
+
+          description:
+            document.getElementById("description").value.trim(),
+
+          createdAt:
+            new Date().toISOString()
+
+        };
+
+
+        serviceRequests.push(request);
+
+
+        localStorage.setItem(
+          "rycolynServiceRequests",
+          JSON.stringify(serviceRequests)
+        );
+
+
+        document.getElementById(
+          "successMessage"
+        ).style.display = "block";
+
+
+        serviceForm.reset();
+
+
+        window.scrollTo({
+          top:
+            document.getElementById(
+              "successMessage"
+            ).offsetTop - 120,
+
+          behavior:
+            "smooth"
+        });
+
+      }
+    );
+
+
+    /* ==========================================
+       LIBRARY REQUEST
+    ========================================== */
+
+    function requestResource(resourceName) {
+
+      document.getElementById(
+        "serviceType"
+      ).value = "Online Library";
+
+
+      document.getElementById(
+        "description"
+      ).value =
+        "I would like to request: " +
+        resourceName;
+
+
+      document.getElementById(
+        "booking"
+      ).scrollIntoView({
+        behavior: "smooth"
+      });
+
+    }
+
+
+    /* ==========================================
+       INVENTORY SYSTEM
+    ========================================== */
+
+    let inventory =
+      JSON.parse(
+        localStorage.getItem(
+          "rycolynInventory"
+        )
+      ) || [];
+
+
+    function saveInventory() {
+
+      localStorage.setItem(
+        "rycolynInventory",
+        JSON.stringify(inventory)
+      );
+
+    }
+
+
+    function addProduct() {
+
+      const name =
+        document
+          .getElementById("productName")
+          .value
+          .trim();
+
+
+      const quantity =
+        Number(
+          document.getElementById(
+            "quantity"
+          ).value
+        );
+
+
+      const buyingPrice =
+        Number(
+          document.getElementById(
+            "buyingPrice"
+          ).value
+        );
+
+
+      const sellingPrice =
+        Number(
+          document.getElementById(
+            "sellingPrice"
+          ).value
+        );
+
+
+      if (
+        !name ||
+        quantity <= 0 ||
+        buyingPrice < 0 ||
+        sellingPrice < 0
+      ) {
+
+        alert(
+          "Please enter valid product details."
+        );
+
+        return;
+
+      }
+
+
+      inventory.push({
+
+        name:
+          name,
+
+        quantity:
+          quantity,
+
+        buyingPrice:
+          buyingPrice,
+
+        sellingPrice:
+          sellingPrice
+
+      });
+
+
+      saveInventory();
+
+
+      document.getElementById(
+        "productName"
+      ).value = "";
+
+
+      document.getElementById(
+        "quantity"
+      ).value = "";
+
+
+      document.getElementById(
+        "buyingPrice"
+      ).value = "";
+
+
+      document.getElementById(
+        "sellingPrice"
+      ).value = "";
+
+
+      displayInventory();
+
+    }
+
+
+    function deleteProduct(index) {
+
+      inventory.splice(
+        index,
+        1
+      );
+
+
+      saveInventory();
+
+
+      displayInventory();
+
+    }
+
+
+    function clearInventory() {
+
+      if (
+        confirm(
+          "Are you sure you want to clear all inventory records?"
+        )
+      ) {
+
+        inventory = [];
+
+        saveInventory();
+
+        displayInventory();
+
+      }
+
+    }
+
+
+    function displayInventory() {
+
+      const table =
+        document.getElementById(
+          "inventoryTable"
+        );
+
+
+      table.innerHTML = "";
+
+
+      let totalProducts =
+        inventory.length;
+
+      let totalStock =
+        0;
+
+      let totalValue =
+        0;
+
+      let totalProfit =
+        0;
+
+
+      inventory.forEach(
+        function(
+          product,
+          index
+        ) {
+
+          const stockValue =
+            product.quantity *
+            product.buyingPrice;
+
+
+          const potentialProfit =
+            product.quantity *
+            (
+              product.sellingPrice -
+              product.buyingPrice
+            );
+
+
+          totalStock +=
+            product.quantity;
+
+
+          totalValue +=
+            stockValue;
+
+
+          totalProfit +=
+            potentialProfit;
+
+
+          const row =
+            document.createElement(
+              "tr"
+            );
+
+
+          row.innerHTML = `
+
+            <td>
+              ${escapeHTML(product.name)}
+            </td>
+
+            <td>
+              ${product.quantity}
+            </td>
+
+            <td>
+              KSh ${product.buyingPrice.toFixed(2)}
+            </td>
+
+            <td>
+              KSh ${product.sellingPrice.toFixed(2)}
+            </td>
+
+            <td>
+              KSh ${stockValue.toFixed(2)}
+            </td>
+
+            <td>
+              KSh ${potentialProfit.toFixed(2)}
+            </td>
+
+            <td>
+
+              <button
+                class="delete-button"
+                onclick="deleteProduct(${index})"
+              >
+                Delete
+              </button>
+
+            </td>
+
+          `;
+
+
+          table.appendChild(
+            row
+          );
+
+        }
+      );
+
+
+      document.getElementById(
+        "totalProducts"
+      ).textContent =
+        totalProducts;
+
+
+      document.getElementById(
+        "totalStock"
+      ).textContent =
+        totalStock;
+
+
+      document.getElementById(
+        "totalValue"
+      ).textContent =
+        "KSh " +
+        totalValue.toFixed(2);
+
+
+      document.getElementById(
+        "totalProfit"
+      ).textContent =
+        "KSh " +
+        totalProfit.toFixed(2);
+
+    }
+
+
+    /* ==========================================
+       BASIC HTML ESCAPING
+    ========================================== */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* ==========================================
+       INITIALIZE
+    ========================================== */
+
+    displayInventory();
+
+  </script>
+
+</body>
+</html>
